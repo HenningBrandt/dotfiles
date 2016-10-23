@@ -1,3 +1,4 @@
 #!/bin/zsh
 
-ln -s ./.* ~/ 
+ln -s ~/dotfiles/.zshrc ~/
+ln -s ~/dotfiles/.vimrc ~/
