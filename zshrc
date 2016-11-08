@@ -45,7 +45,7 @@ ZSH_THEME="blinks"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=()
+plugins=(brew)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -90,6 +90,22 @@ alias unixepoch="date +%s"
 # git commands
 alias glog="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 alias glog2="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all"
+alias ga="git add -A"
+alias gc="git commit"
+alias gp="git push origin"
+alias gs="git status"
 
 # edit vimrc
 alias vimrc="mvim ~/.vimrc"
+
+# detailed directory listing
+alias ll="ls -oAFh"
+
+# clear terminal
+alias c="clear"
+
+# resize tmux split
+alias tr="tmux resizep -x 100"
+
+# open global todo file
+alias todo="vim $HOME/.todo.md"

@@ -1,3 +1,17 @@
+" Setup Vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-surround'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'tpope/vim-fugitive'
+
+call vundle#end()
+
 " A minimal vimrc for new vim users to start with.
 "
 " Referenced here: http://vimuniversity.com/samples/your-first-vimrc-should-be-nearly-empty
@@ -33,17 +47,44 @@ set number
 set hidden
 
 
-" Personal configuration to the minimal vimrc above
+" ==================================================================
+"
+" Personal configuration of the minimal vimrc above
 "
 " Author:	Henning Brandt
+
+" Centralize Swapfiles
+set directory^=$HOME/.vim/tmp//
 
 " Use space as the leader
 let mapleader="\<space>"
 
-" Keymaps
-imap jj <Esc>
+" Insert newline
 nmap <S-Enter> o<Esc>
-nmap <leader>l :set list!<CR>
+" Toogle hidden chars
+nmap <Leader>h :set list!<CR>
+" Move line down
+nmap - ddp
+" Quick exit insert mode
+imap jj <Esc>
+" Use tab for completion
+imap <Tab> <C-n>
+" Pretty print json
+" https://pascalprecht.github.io/2014/07/10/pretty-print-json-in-vim/
+" TODO: Need to find out how to bind this only if python is intalled
+nmap <Leader>pp :%!python -m json.tool<enter>
+" disable arrow keys
+nmap <Up> <Nop>
+nmap <Down> <Nop>
+nmap <Left> <Nop>
+nmap <Right> <Nop>
+" Make switching splits easier
+nmap <C-k> <C-W>k
+nmap <C-l> <C-W>l
+nmap <C-j> <C-W>j
+nmap <C-h> <C-W>h
+
+imap <C-Tab> <Tab>
 
 " Textmate symbols for hidden chars
 set listchars=tab:▸\ ,eol:¬
@@ -57,6 +98,9 @@ set colorcolumn=80
 set background=dark
 colorscheme solarized
 
+" Editor font
+set guifont=SFMono-Regular:h11
+
 " Enable relative line numbering
 set relativenumber
 
@@ -65,5 +109,9 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-" Enable pathogen plugin
-execute pathogen#infect()
+" Show statusbar
+set laststatus=2
+let g:airline_theme='solarized'
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+set t_Co=256 "enable statusbar colors in terminal
