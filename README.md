@@ -1,10 +1,10 @@
 # Intro
 
-Repository for my personal configuration files. Feel free to browse through
-copy and copy stuff thats interesting to you.
-
-Thanks to Ben Orenstein and Ryan Bates for the idea and the useful stuff I
-copied from their repos.
+Repository for my configuration files. Feel free to browse through
+ and copy stuff thats interesting to you.
+Thanks to [Ben Orenstein](https://github.com/r00k/dotfiles)
+ and [Ryan Bates](https://github.com/ryanb/dotfiles)
+ for the idea and the useful stuff I copied from their repos.
 
 # Installation
 
