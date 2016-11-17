@@ -88,7 +88,7 @@ augroup END
 " Custom key bindings
 " ===================
 
-nmap <S-Enter> o<Esc>|            " Insert newline 
+nmap <S-CR> o<Esc>|               " Insert newline 
 nmap - ddp|                       " Move line down
 imap jj <Esc>|                    " Quick exit insert mode
 nmap <Up> <Nop>|                  " Disable arrow keys
@@ -100,7 +100,9 @@ nmap <C-l> <C-W>l
 nmap <C-j> <C-W>j
 nmap <C-h> <C-W>h
 imap <Tab> <C-n>
+" Terminal flow control must be disabled for Ctr-s to work
 imap <C-s> <Esc>:w<CR>|           " Escape insert mode and save file
+nmap <C-s> <Esc>:w<CR>
 
 
 " Leader commands
