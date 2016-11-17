@@ -6,6 +6,16 @@ chpwd() {
     ls -lrthG
 }
 
+# Function to source scripts from .zsh Directory
+BASE="$HOME/.zsh"
+source_all_scripts_in() {
+    if [ -d "$BASE/$1" ]; then
+        for script in "$BASE/$1"/*.zsh; do
+            source "$script"
+        done
+    fi
+}
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -20,7 +30,6 @@ plugins=(brew)
 
 # Sourcing of other files
 source $ZSH/oh-my-zsh.sh
-source $HOME/.dotfiles/zsh/aliases
 
 # Configure Xocde Toolchain
 export XCODE=`xcode-select --print-path`
@@ -36,3 +45,6 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='vim'
 fi
+
+# Source custom scripts
+source_all_scripts_in ""
