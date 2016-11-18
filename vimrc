@@ -12,12 +12,21 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-fugitive'
+Plugin 'itchyny/lightline.vim'
+Plugin 'altercation/vim-colors-solarized'
 
 call vundle#end()
+
+function! s:SourceConfigFilesIn(directory)
+    let directory_splat = '~/.vim/' . a:directory . '/*.vim'
+    for config_file in split(glob(directory_splat), '\n')
+        if filereadable(config_file)
+            execute 'source' config_file
+        endif
+    endfor
+endfunction
 
 
 " General settings
@@ -59,11 +68,6 @@ highlight SpecialKey guifg=#4a4a59
 " Show column width limit
 set colorcolumn=80
 
-" Make vim look pretty
-set background=dark
-colorscheme solarized
-set guifont=SFMono-Regular:h11
-
 " Autoresize splits
 set winwidth=120
 set winheight=5
@@ -73,6 +77,11 @@ set winheight=999
 " More natural behaviour for splits
 set splitbelow
 set splitright
+
+" Make vim look pretty
+set background=dark
+colorscheme solarized
+set guifont=SFMono-Regular:h11
 
 
 " Language specific settings
@@ -120,9 +129,5 @@ nmap <Leader>h :set list!<CR>
 " Plugin Configuration
 " ====================
 
-" Configure Airline
-set laststatus=2
-let g:airline_theme='solarized'
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-set t_Co=256
+call s:SourceConfigFilesIn('rcplugins')
+
