@@ -15,6 +15,7 @@ imap <Tab> <C-n>
 " Terminal flow control must be disabled for Ctr-s to work
 imap <C-s> :w<CR>|                " Escape insert mode and save file
 nmap <C-s> <Esc>:w<CR>
+imap <C-x> <Esc>:wq<CR>|          " Quickly save and exit
 
 
 " Leader commands
@@ -25,5 +26,3 @@ nmap <Leader>i mmgg=G'm
 nmap <Leader>so :source $MYVIMRC<CR>
 map <Leader>p :set paste<CR>"*]p:set nopaste<CR>
 nmap <Leader>h :set list!<CR>
-
-
