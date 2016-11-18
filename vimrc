@@ -97,7 +97,6 @@ augroup END
 " Custom key bindings
 " ===================
 
-nmap <S-CR> o<Esc>|               " Insert newline 
 nmap - ddp|                       " Move line down
 imap jj <Esc>|                    " Quick exit insert mode
 nmap <Up> <Nop>|                  " Disable arrow keys
