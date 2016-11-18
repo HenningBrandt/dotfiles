@@ -109,7 +109,7 @@ nmap <C-j> <C-W>j
 nmap <C-h> <C-W>h
 imap <Tab> <C-n>
 " Terminal flow control must be disabled for Ctr-s to work
-imap <C-s> <Esc>:w<CR>|           " Escape insert mode and save file
+imap <C-s> :w<CR>|                " Escape insert mode and save file
 nmap <C-s> <Esc>:w<CR>
 
 
