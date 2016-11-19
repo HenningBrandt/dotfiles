@@ -8,10 +8,19 @@ set hidden
 " Centralize Swapfiles
 set directory^=$HOME/.vim/tmp//
 
+" Make backspace behave normal
+set backspace=indent,eol,start
+
 " Set indentation
 set tabstop=4
 set shiftwidth=4
 set expandtab
+ 
+" Search
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
 
 " Textmate symbols for hidden chars
 set listchars=tab:▸\ ,eol:¬

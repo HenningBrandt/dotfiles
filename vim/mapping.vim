@@ -16,6 +16,7 @@ imap <Tab> <C-n>
 imap <C-s> :w<CR>|                " Escape insert mode and save file
 nmap <C-s> <Esc>:w<CR>
 imap <C-x> <Esc>:wq<CR>|          " Quickly save and exit
+nmap <C-x> :wq<CR>
 
 
 " Leader commands
@@ -26,3 +27,4 @@ nmap <Leader>i mmgg=G'm
 nmap <Leader>so :source $MYVIMRC<CR>
 map <Leader>p :set paste<CR>"*]p:set nopaste<CR>
 nmap <Leader>h :set list!<CR>
+nmap <Leader>c :nohlsearch<CR>
