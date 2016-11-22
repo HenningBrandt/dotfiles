@@ -46,9 +46,5 @@ else
   export EDITOR='vim'
 fi
 
-# Disable flow control to enable bindings for Ctrl-s
-stty start undef
-stty stop undef
-
 # Source custom scripts
 source_all_scripts_in ""
