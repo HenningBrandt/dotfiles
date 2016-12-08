@@ -1,0 +1,94 @@
+#!/usr/bin/env osascript -l JavaScript
+
+ObjC.import("stdlib")
+
+function run(argv) {
+	if (argv.length != 1) {
+		$.exit(1)
+	}
+	
+	session = Application("iTerm")
+		.currentWindow()
+		.currentTab()
+		.currentSession()
+
+	colors = readPlist(argv[0])
+
+	// Set the 16 Ansi colors which have keys like e.g. 'Ansi 1 Color'
+	for (i = 0; i <= 15; ++i) {
+		key = "Ansi " + i + " Color"
+		value = colorComponents(colors[key])
+	
+		switch (i) {
+        	case 0: session.ansiBlackColor = value; break;
+        	case 1: session.ansiRedColor = value; break;
+        	case 2: session.ansiGreenColor = value; break;
+        	case 3: session.ansiYellowColor = value; break;
+        	case 4: session.ansiBlueColor = value; break;
+        	case 5: session.ansiMagentaColor = value; break;
+        	case 6: session.ansiCyanColor = value; break;
+        	case 7: session.ansiWhiteColor = value; break;    
+        	case 8: session.ansiBrightBlackColor = value; break;
+        	case 9: session.ansiBrightRedColor = value; break;
+       	 	case 10: session.ansiBrightGreenColor = value; break;
+       	 	case 11: session.ansiBrightYellowColor = value; break;
+        	case 12: session.ansiBrightBlueColor = value; break;
+        	case 13: session.ansiBrightMagentaColor = value; break;
+        	case 14: session.ansiBrightCyanColor = value; break;
+        	case 15: session.ansiBrightWhiteColor = value; break;    
+        	default: break;
+    	}
+	}
+
+	// Set remaining color values not included in the 16 Ansi colors
+	session.backgroundColor = colorComponents(colors["Background Color"])
+	session.boldColor = colorComponents(colors["Bold Color"])
+	session.cursorColor = colorComponents(colors["Cursor Color"])
+	session.cursorTextColor = colorComponents(colors["Cursor Text Color"])
+	session.foregroundColor = colorComponents(colors["Foreground Color"])
+	session.selectedTextColor = colorComponents(colors["Selected Text Color"])
+	session.selectionColor = colorComponents(colors["Selection Color"])
+}
+
+
+/**
+ * Reads a given plist file and returns it as a javascript object.
+ *
+ * @param {String} path The absolute path to the plist file
+ * @return {Object} The plist as javascript objects
+ */
+function readPlist(path) {
+	// Expands the given path. $ bridges to ObjC
+	fullPath = $(path).stringByStandardizingPath;
+		
+	// Try to parse an NSDictionary and bridge it back to javascript	
+	result = ObjC.deepUnwrap($.NSDictionary.dictionaryWithContentsOfFile(fullPath))
+	if (result) {
+		return result
+	}
+	
+	// Not a dictionary, try to parse an NSArray and bridge it back to javascript
+	return ObjC.deepUnwrap($.NSArray.arrayWithContentsOfFile(fullPath))
+}
+
+
+/**
+ * Reads the color components from a iTerm colors plist.
+ *
+ * The AppleScript system expects an Array with red, green, blue and alpha components,
+ * the values range from 0 to 65535, so we need to convert the plist values which range
+ * from 0 to 1.
+ *
+ * @param {Object} The color dictionary
+ * @return {Array} Red, green, blue, alpha components
+ */
+function colorComponents(color) {
+	max = 65535
+	
+	return [
+		Math.floor(color["Red Component"] * max),
+		Math.floor(color["Green Component"] * max),
+		Math.floor(color["Blue Component"] * max),
+		0
+	]
+}

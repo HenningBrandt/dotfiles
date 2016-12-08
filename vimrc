@@ -7,6 +7,8 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+filetype off
+
 
 " Plugin configuration
 " ====================
@@ -19,8 +21,12 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-fugitive'
-Plugin 'itchyny/lightline.vim'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'endel/vim-github-colorscheme'
+Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 call vundle#end()
 
@@ -33,11 +39,12 @@ function! s:SourceConfigFilesIn(directory)
     endfor
 endfunction
 
+syntax on
+filetype plugin indent on
+
 " <Leader> must be set before any mapping is defined
 let mapleader="\<space>"
 
 call s:SourceConfigFilesIn('rcplugins')
+call s:SourceConfigFilesIn('functions')
 call s:SourceConfigFilesIn('')
-
-syntax on
-filetype plugin indent on

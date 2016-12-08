@@ -30,19 +30,13 @@ highlight SpecialKey guifg=#4a4a59
 " Show column width limit
 set colorcolumn=80
 
-" Autoresize splits
-set winwidth=120
-set winheight=5
-set winminheight=5
-set winheight=999
-
 " More natural behaviour for splits
 set splitbelow
 set splitright
 
 " Make vim look pretty
-set background=dark
-colorscheme solarized
+set background=light
+colorscheme PaperColor
 set guifont=SFMono-Regular:h11
 
 
